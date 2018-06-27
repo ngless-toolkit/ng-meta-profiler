@@ -12,7 +12,7 @@ input = preprocess(input, keep_singles=False) using |read|:
     if len(read) < 45:
         discard
 
-mapped = map(input, reference='mm10')
+mapped = map(input, reference='mm10.p5')
 
 mapped = select(mapped) using |mr|:
     mr = mr.filter(min_match_size=45, min_identity_pc=90, action={unmatch})
