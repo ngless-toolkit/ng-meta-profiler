@@ -7,30 +7,30 @@ import "igc" version "0.9"
 input = load_mocat_sample(ARGV[1])
 RESULTS = ARGV[2]
 
-input = preprocess(input, keep_singles=False) using |read|:
+qc_reads = preprocess(input, keep_singles=False) using |read|:
     read = substrim(read, min_quality=25)
     if len(read) < 45:
         discard
 
-mapped = map(input, reference='hg19')
+human_mapped = map(preprocessed, reference='hg19')
 
-mapped = select(mapped) using |mr|:
+non_human = select(human_mapped) using |mr|:
     mr = mr.filter(min_match_size=45, min_identity_pc=90, action={unmatch})
     if mr.flag({mapped}):
         discard
 
-input = as_reads(mapped)
+non_human_reads = as_reads(mapped)
 
-mapped = map(input, reference='igc', mode_all=True)
-mapped = select(mapped) using |mr|:
+igc_mapped = map(non_human_reads, reference='igc', mode_all=True)
+igc_mapped_post = select(igc_mapped) using |mr|:
     mr = mr.filter(min_match_size=45, min_identity_pc=95, action={drop})
     if not mr.flag({mapped}):
         discard
 
-counted = count(mapped,
+igc_counts = count(igc_mapped_post,
                     features=['OGs'],
                     multiple={dist1},
                     normalization={scaled})
-write(counted,
+write(igc_counts,
         ofile=RESULTS </> 'eggNOG.traditional.counts.txt',
         auto_comments=[{hash}, {script}])
