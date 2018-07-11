@@ -15,8 +15,6 @@ for processing shotgun metagenomes.
 
 5. `pig-gut.ngl` for pig gut samples
 
-6. `de-novo.ngl` for de novo processing
-
 These are predefined, but users are encouraged to adapt them to their specific
 needs.
 
