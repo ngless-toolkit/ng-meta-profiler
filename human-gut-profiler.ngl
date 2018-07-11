@@ -1,5 +1,5 @@
 #!/usr/bin/env ngless
-ngless "0.8"
+ngless "0.9"
 import "mocat" version "0.0"
 import "specI" version "0.1"
 import "igc" version "0.9"

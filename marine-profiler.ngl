@@ -1,7 +1,7 @@
 #!/usr/bin/env ngless
-ngless "0.8"
-import "mocat" version "0.0"
-import "om-rgc" version "0.0"
+ngless "0.9"
+import "mocat" version "0.6"
+import "om-rgc" version "0.9"
 
 input = load_mocat_sample(ARGV[1])
 RESULTS = ARGV[2]

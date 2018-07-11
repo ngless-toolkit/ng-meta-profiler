@@ -1,7 +1,7 @@
 #!/usr/bin/env ngless
-ngless "0.8"
-import "mocat" version "0.0"
-import "specI" version "0.1"
+
+ngless "0.9"
+import "mocat" version "0.6"
 import "DogGutGeneCatalog" version "0.9"
 
 input = load_mocat_sample(ARGV[1])
