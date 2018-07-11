@@ -12,14 +12,14 @@ qc_reads = preprocess(input, keep_singles=False) using |read|:
     if len(read) < 45:
         discard
 
-human_mapped = map(preprocessed, reference='hg19')
+human_mapped = map(qc_reads, reference='hg19')
 
 non_human = select(human_mapped) using |mr|:
     mr = mr.filter(min_match_size=45, min_identity_pc=90, action={unmatch})
     if mr.flag({mapped}):
         discard
 
-non_human_reads = as_reads(mapped)
+non_human_reads = as_reads(non_human)
 
 igc_mapped = map(non_human_reads, reference='igc', mode_all=True)
 igc_mapped_post = select(igc_mapped) using |mr|:
