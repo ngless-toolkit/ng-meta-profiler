@@ -35,10 +35,10 @@ it](http://ngless.embl.de/install.html).
 
 ## USAGE
 
-To use the profiler, select the appropriate script (e.  (e.g., `human-gut.ngl`
-for human gut samples), put all the FastQ files from the same sample in the
-same directory (`INPUT-DIRECTORY`) with the extension `.fq.gz` or `fastq.gz`
-and run:
+To use the profiler, select the appropriate script (e.g., `human-gut.ngl` for
+human gut samples), put all the FastQ files from the same sample in the same
+directory (`INPUT-DIRECTORY`) with the extension `.fq.gz` or `fastq.gz` and
+run:
 
     ngless human-gut.ngl INPUT-DIRECTORY OUTPUT-DIRECTORY
 
