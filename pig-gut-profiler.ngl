@@ -2,7 +2,7 @@
 ngless "0.9"
 import "mocat" version "0.0"
 import "specI" version "0.1"
-import "PigGutGeneCatalog" version "0.9"
+import "PigGutCatalog" version "0.9"
 
 input = load_mocat_sample(ARGV[1])
 RESULTS = ARGV[2]
