@@ -2,6 +2,7 @@
 
 ngless "0.9"
 import "mocat" version "0.6"
+import "specI" version "0.1"
 import "DogGutCatalog" version "0.9"
 
 input = load_mocat_sample(ARGV[1])
@@ -34,3 +35,19 @@ counted = count(mapped,
 write(counted,
         ofile=RESULTS </> 'eggNOG.traditional.counts.txt',
         auto_comments=[{hash}, {script}])
+
+mapped_refmg = map(input, reference='refmg')
+mapped_refmg = select(mapped_refmg) using |mr|:
+    mr = mr.filter(min_match_size=45, min_identity_pc=97, action={drop})
+    if not mr.flag({mapped}):
+        discard
+
+write(count(mapped_refmg,
+                features=['specI_cluster']),
+    ofile=RESULTS </> 'specI.raw.counts.txt')
+
+write(count(mapped_refmg,
+                    features=['specI_cluster'],
+                    normalization={scaled}),
+    ofile=RESULTS </> 'specI.scaled.counts.txt')
+

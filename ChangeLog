@@ -1,3 +1,6 @@
+Version 0.9.1 2018-07-14 by luispedro
+	* Add specI/motu profiling for mammal gut profilers
+
 Version 0.9.0 2018-07-12 by luispedro
 	* First version (called 0.9.0 to match NGLess)
 	* Human, mouse, pig, dog gut and marine microbiome profilers

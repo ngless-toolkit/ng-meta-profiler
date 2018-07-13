@@ -34,3 +34,19 @@ counted = count(mapped,
 write(counted,
         ofile=RESULTS </> 'eggNOG.traditional.counts.txt',
         auto_comments=[{hash}, {script}])
+
+mapped_refmg = map(input, reference='refmg')
+mapped_refmg = select(mapped_refmg) using |mr|:
+    mr = mr.filter(min_match_size=45, min_identity_pc=97, action={drop})
+    if not mr.flag({mapped}):
+        discard
+
+write(count(mapped_refmg,
+                features=['specI_cluster']),
+    ofile=RESULTS </> 'specI.raw.counts.txt')
+
+write(count(mapped_refmg,
+                    features=['specI_cluster'],
+                    normalization={scaled}),
+    ofile=RESULTS </> 'specI.scaled.counts.txt')
+
