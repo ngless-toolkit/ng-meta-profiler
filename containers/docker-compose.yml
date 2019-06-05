@@ -1,0 +1,46 @@
+version: '3.0'
+
+services:
+    base:
+        build:
+            context: .
+            dockerfile: Dockerfile-ngless
+        environment:
+            - PATH=/opt/ngless/bin:$PATH
+            - XDG_RUNTIME_DIR=""
+        image: nglesstoolkit/ngless:1.0.0
+    marine:
+        build:
+            context: .
+            dockerfile: Dockerfile-ng-meta-marine
+        image: nglesstoolkit/ng-meta-marine:1.0.0
+        depends_on:
+            - base
+    human-gut:
+        build:
+            context: .
+            dockerfile: Dockerfile-ng-meta-human-gut
+        image: nglesstoolkit/ng-meta-human-gut:1.0.0
+        depends_on:
+            - base
+    pig-gut:
+        build:
+            context: .
+            dockerfile: Dockerfile-ng-meta-pig-gut
+        image: nglesstoolkit/ng-meta-pig-gut:1.0.0
+        depends_on:
+            - base
+    dog-gut:
+        build:
+            context: .
+            dockerfile: Dockerfile-ng-meta-dog-gut
+        image: nglesstoolkit/ng-meta-dog-gut:1.0.0
+        depends_on:
+            - base
+    mouse-gut:
+        build:
+            context: .
+            dockerfile: Dockerfile-ng-meta-mouse-gut
+        image: nglesstoolkit/ng-meta-mouse-gut:1.0.0
+        depends_on:
+            - base

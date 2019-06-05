@@ -1,0 +1,19 @@
+FROM nglesstoolkit/ngless:1.0.0
+
+LABEL maintainer "alves.rjc+docker@gmail.com"
+
+RUN wget -qO /tmp/ng-meta-profiler.zip https://github.com/ngless-toolkit/ng-meta-profiler/archive/v0.9.1.zip && \
+    unzip /tmp/ng-meta-profiler.zip && \
+    mv ng-meta-profiler-*/human-gut-profiler.ngl /opt/ngless/bin && \
+    rm -rf /tmp/ng-meta-profiler.zip ng-meta-profiler-*
+
+RUN mkdir -p /data/output/tmp && \
+    mkdir -p /data/input/dummy && \
+    touch /data/input/dummy/dummy.fq && \
+    /opt/ngless/bin/ngless --trace -t /data/output/tmp /opt/ngless/bin/human-gut-profiler.ngl /data/input/dummy /data/output && \
+    rm -f /root/.local/share/ngless/data/References/hg19/Sequence/BWAIndex/reference.fa.gz.* && \
+    rm -rf /data/input/* && \
+    rm -rf /data/output/*
+
+ENTRYPOINT ["/opt/ngless/bin/ngless", "/opt/ngless/bin/human-gut-profiler.ngl"]
+CMD []

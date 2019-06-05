@@ -1,0 +1,23 @@
+FROM ubuntu:latest
+
+LABEL maintainer "alves.rjc+docker@gmail.com"
+
+RUN apt update && \
+    apt install -y \
+    ca-certificates \
+    coreutils \
+    netbase \
+    python \
+    unzip \
+    wget \
+    && \
+    apt clean && \
+    rm -rf /var/lib/apt/lists
+
+RUN mkdir -p /data && \
+    mkdir -p /opt/ngless/bin && \
+    wget -O /opt/ngless/bin/ngless https://ngless.embl.de/releases/ngless-1.0.0-Linux64 && \
+    chmod +x /opt/ngless/bin/ngless
+
+ENTRYPOINT ["/opt/ngless/bin/ngless"]
+WORKDIR "/data"
