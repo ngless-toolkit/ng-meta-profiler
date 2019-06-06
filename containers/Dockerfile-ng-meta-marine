@@ -10,10 +10,15 @@ RUN wget -qO /tmp/ng-meta-profiler.zip https://github.com/ngless-toolkit/ng-meta
 RUN mkdir -p /data/output/tmp && \
     mkdir -p /data/input/dummy && \
     touch /data/input/dummy/dummy.fq && \
-    /opt/ngless/bin/ngless --trace -t /data/output/tmp /opt/ngless/bin/marine-profiler.ngl /data/input/dummy /data/output && \
-    rm -f /root/.local/share/ngless/data/Modules/om-rgc.ngm/0.0/data/OM-RGC.fna.* && \
+    /opt/ngless/bin/ngless --no-create-report --trace -t /data/output/tmp /opt/ngless/bin/marine-profiler.ngl /data/input/dummy /data/output && \
+    rm -f /root/.local/share/ngless/data/Modules/om-rgc.ngm/0.9/data/OM-RGC.fna.* && \
     rm -rf /data/input/* && \
-    rm -rf /data/output/*
+    rm -rf /data/output/* && \
+    mkdir -p /opt/ngless/share/ngless/data/ && \
+    mv /root/.local/share/ngless/data/Modules /opt/ngless/share/ngless/data/
+
+# ngless seems to create References in /opt/ngless/share/ngless/data by default
+# if the location exists so above we only move the Modules folder
 
 ENTRYPOINT ["/opt/ngless/bin/ngless", "/opt/ngless/bin/marine-profiler.ngl"]
 CMD []

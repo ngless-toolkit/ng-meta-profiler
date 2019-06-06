@@ -1,0 +1,12 @@
+BootStrap: docker
+From: nglesstoolkit/ngless:1.0.0
+
+%environment
+    export PATH=/opt/ngless/bin:$PATH
+    export XDG_RUNTIME_DIR=""
+
+%apprun ngless 
+    ngless "$@"
+
+%runscript
+    ngless "$@"

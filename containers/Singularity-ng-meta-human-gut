@@ -1,0 +1,12 @@
+BootStrap: docker
+From: nglesstoolkit/ng-meta-human-gut:1.0.0
+
+%environment
+    export PATH=/opt/ngless/bin:$PATH
+    export XDG_RUNTIME_DIR=""
+
+%apprun ng-meta-human-gut-profiler
+    ngless /opt/ngless/bin/human-gut-profiler.ngl "$@"
+
+%runscript
+    ngless /opt/ngless/bin/human-gut-profiler.ngl "$@"

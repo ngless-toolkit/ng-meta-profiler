@@ -10,10 +10,26 @@ RUN wget -qO /tmp/ng-meta-profiler.zip https://github.com/ngless-toolkit/ng-meta
 RUN mkdir -p /data/output/tmp && \
     mkdir -p /data/input/dummy && \
     touch /data/input/dummy/dummy.fq && \
-    /opt/ngless/bin/ngless --trace -t /data/output/tmp /opt/ngless/bin/human-gut-profiler.ngl /data/input/dummy /data/output && \
+    /opt/ngless/bin/ngless --no-create-report --trace -t /data/output/tmp /opt/ngless/bin/human-gut-profiler.ngl /data/input/dummy /data/output && \
     rm -f /root/.local/share/ngless/data/References/hg19/Sequence/BWAIndex/reference.fa.gz.* && \
+    rm -f /opt/ngless/share/ngless/data/References/hg19/Sequence/BWAIndex/reference.fa.gz.* && \
     rm -rf /data/input/* && \
-    rm -rf /data/output/*
+    rm -rf /data/output/* && \
+    mkdir -p /opt/ngless/share/ngless/data/ && \
+    mv /root/.local/share/ngless/data/Modules /opt/ngless/share/ngless/data/ && \
+    rm -f /opt/ngless/share/ngless/data/Modules/motus.ngm/0.1/data/mOTU.v1.padded.amb && \
+    rm -f /opt/ngless/share/ngless/data/Modules/motus.ngm/0.1/data/mOTU.v1.padded.ann && \
+    rm -f /opt/ngless/share/ngless/data/Modules/motus.ngm/0.1/data/mOTU.v1.padded.bwt && \
+    rm -f /opt/ngless/share/ngless/data/Modules/motus.ngm/0.1/data/mOTU.v1.padded.pac && \
+    rm -f /opt/ngless/share/ngless/data/Modules/motus.ngm/0.1/data/mOTU.v1.padded.sa && \
+    rm -f /opt/ngless/share/ngless/data/Modules/specI.ngm/0.1/data/RefMG.v1.padded.amb && \
+    rm -f /opt/ngless/share/ngless/data/Modules/specI.ngm/0.1/data/RefMG.v1.padded.ann && \
+    rm -f /opt/ngless/share/ngless/data/Modules/specI.ngm/0.1/data/RefMG.v1.padded.bwt && \
+    rm -f /opt/ngless/share/ngless/data/Modules/specI.ngm/0.1/data/RefMG.v1.padded.pac && \
+    rm -f /opt/ngless/share/ngless/data/Modules/specI.ngm/0.1/data/RefMG.v1.padded.sa
+
+# ngless seems to create References in /opt/ngless/share/ngless/data by default
+# if the location exists so above we only move the Modules folder
 
 ENTRYPOINT ["/opt/ngless/bin/ngless", "/opt/ngless/bin/human-gut-profiler.ngl"]
 CMD []
