@@ -1,5 +1,5 @@
 BootStrap: docker
-From: nglesstoolkit/ng-meta-marine:1.0.0
+From: nglesstoolkit/ng-meta-marine:1.0.1
 
 %environment
     export PATH=/opt/ngless/bin:$PATH

@@ -17,7 +17,7 @@ RUN apt update && \
 RUN mkdir -p /data && \
     mkdir -p /opt/ngless/bin && \
     mkdir -p /opt/ngless/share/ngless && \
-    wget -O /opt/ngless/bin/ngless https://ngless.embl.de/releases/ngless-1.0.0-Linux64 && \
+    wget -O /opt/ngless/bin/ngless https://github.com/ngless-toolkit/ngless/releases/download/v1.0.1/NGLess-1.0.1-static-Linux64 && \
     chmod +x /opt/ngless/bin/ngless
 
 ENTRYPOINT ["/opt/ngless/bin/ngless"]

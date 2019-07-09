@@ -1,5 +1,5 @@
 BootStrap: docker
-From: nglesstoolkit/ng-meta-mouse-gut:1.0.0
+From: nglesstoolkit/ng-meta-mouse-gut:1.0.1
 
 %environment
     export PATH=/opt/ngless/bin:$PATH

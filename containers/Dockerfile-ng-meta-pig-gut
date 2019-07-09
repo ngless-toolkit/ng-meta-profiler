@@ -1,4 +1,4 @@
-FROM nglesstoolkit/ngless:1.0.0
+FROM nglesstoolkit/ngless:1.0.1
 
 LABEL maintainer "alves.rjc+docker@gmail.com"
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TAG="1.0.0"
+TAG="1.0.1"
 
 for name in ngless ng-meta-dog-gut ng-meta-pig-gut ng-meta-mouse-gut ng-meta-human-gut ng-meta-marine ; do
     docker-compose build $name
