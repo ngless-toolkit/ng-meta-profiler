@@ -1,0 +1,41 @@
+#!/usr/bin/env ngless
+ngless "0.9"
+import "mocat" version "0.0"
+import "igc" version "0.9"
+local import "motus" version "2.5"
+
+input = load_mocat_sample(ARGV[1])
+RESULTS = ARGV[2]
+
+qc_reads = preprocess(input, keep_singles=False) using |read|:
+    read = substrim(read, min_quality=25)
+    if len(read) < 45:
+        discard
+
+human_mapped = map(qc_reads, reference='hg19')
+
+non_human = select(human_mapped) using |mr|:
+    mr = mr.filter(min_match_size=45, min_identity_pc=90, action={unmatch})
+    if mr.flag({mapped}):
+        discard
+
+non_human_reads = as_reads(non_human)
+
+igc_mapped = map(non_human_reads, reference='igc', mode_all=True)
+igc_mapped_post = select(igc_mapped) using |mr|:
+    mr = mr.filter(min_match_size=45, min_identity_pc=95, action={drop})
+    if not mr.flag({mapped}):
+        discard
+
+igc_counts = count(igc_mapped_post,
+                   features=['OGs'],
+                   multiple={dist1},
+                   normalization={scaled})
+write(igc_counts,
+      ofile=RESULTS </> 'eggNOG.traditional.counts.txt',
+      auto_comments=[{hash}, {script}])
+
+motus_counts = motus(non_human_reads, sample=ARGV[1])
+
+write(motus_counts,
+      ofile=RESULTS </> 'motus_and_specI.counts.txt')
