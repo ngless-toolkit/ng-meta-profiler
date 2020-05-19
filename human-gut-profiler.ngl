@@ -1,9 +1,9 @@
 #!/usr/bin/env ngless
-ngless "0.9"
-import "mocat" version "0.0"
-import "specI" version "0.1"
-import "motus" version "0.1"
-import "igc" version "0.9"
+ngless "1.0"
+import "mocat" version "1.0"
+import "specI" version "1.0"
+import "motus" version "1.0"
+import "igc" version "1.0"
 
 input = load_mocat_sample(ARGV[1])
 RESULTS = ARGV[2]

@@ -1,8 +1,8 @@
 #!/usr/bin/env ngless
-ngless "0.9"
-import "mocat" version "0.0"
-import "specI" version "0.1"
-import "PigGutCatalog" version "0.9"
+ngless "1.0"
+import "mocat" version "1.0"
+import "specI" version "1.0"
+import "PigGutCatalog" version "1.0"
 
 input = load_mocat_sample(ARGV[1])
 RESULTS = ARGV[2]
