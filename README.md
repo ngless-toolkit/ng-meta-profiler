@@ -80,6 +80,25 @@ which will download and analyse the specified data with the `human-gut:1.0.0` pr
 containing a metagenome as a set of files named according to the [MOCAT
 format](http://ngless.embl.de/stdlib.html#mocat-module).
 
+## RESOURCE REQUIREMENTS
+
+Profiler | Memory | Disk space
+---------+--------+-----------
+Human    |  14.7G |       18G
+---------+--------+-----------
+Mouse    |   5.1G |      6.3G
+---------+--------+-----------
+Dog      |   4.5G |      3.5G
+---------+--------+-----------
+Pig      |  10.1G |       17G
+---------+--------+-----------
+
+Note too that _the first time_ you run a particular profiler, NGLess will
+download and index the respective databases. This is likely to take several
+hours (and this process does not benefit from using multiple threads). This is
+only necessary once. Afterwards, the index will be reused (this is what is
+responsible for disk space usage in the table above).
+
 ## GETTING HELP
 
 - [NGLess webpage](http://ngless.embl.de) includes a section on [ngless-profiler]()
