@@ -1,8 +1,8 @@
 # NGLESS-PROFILER
 
-[http://ngless.embl.de](http://ngless.embl.de)
+[https://ngless.embl.de](https://ngless.embl.de)
 
-This is a collection of predefined [ngless](http://ngless.embl.de) pipelines
+This is a collection of predefined [ngless](https://ngless.embl.de) pipelines
 for processing shotgun metagenomes.
 
 1. `human-gut.ngl` for human gut samples
@@ -32,13 +32,13 @@ If you are using NG-meta-profiler (or any NGLess-based pipeline), please cite:
 
 You need to
 
-1. install [ngless](http://github.com/ngless-toolkit/ngless). The recommended
+1. install [ngless](https://github.com/ngless-toolkit/ngless). The recommended
    way is through bioconda:
 
     conda install -c bioconda ngless
 
 Alternatively, see the [ngless documentation on how to install
-it](http://ngless.embl.de/install.html).
+it](https://ngless.embl.de/install.html).
 
 2. copy the profiling scripts to next to where your data lives
 
@@ -53,7 +53,7 @@ run:
     ngless human-gut.ngl INPUT-DIRECTORY OUTPUT-DIRECTORY
 
 You can use all the [ngless command line
-options](http://ngless.embl.de/command-line-options.html) to set options. For
+options](https://ngless.embl.de/command-line-options.html) to set options. For
 example, to use 8 cores, use:
 
     ngless --threads=8 human-gut.ngl INPUT-DIRECTORY OUTPUT-DIRECTORY
@@ -78,7 +78,7 @@ which will download and analyse the specified data with the `human-gut:1.0.0` pr
 
 `INPUT` and `OUTPUT` should be absolute paths and `INPUT` should be a directory
 containing a metagenome as a set of files named according to the [MOCAT
-format](http://ngless.embl.de/stdlib.html#mocat-module).
+format](https://ngless.embl.de/stdlib.html#mocat-module).
 
 ## RESOURCE REQUIREMENTS
 
@@ -101,7 +101,7 @@ responsible for disk space usage in the table above).
 
 ## GETTING HELP
 
-- [NGLess webpage](http://ngless.embl.de) includes a section on [ngless-profiler]()
+- [NGLess webpage](https://ngless.embl.de) includes a section on [ngless-profiler]()
 - For questions, you can use the [ngless mailing
   list](https://groups.google.com/forum/#!forum/ngless).
 
