@@ -1,9 +1,8 @@
 #!/usr/bin/env ngless
-ngless "1.0"
-import "mocat" version "1.0"
-import "specI" version "1.0"
-import "motus" version "1.0"
-import "igc" version "1.0"
+ngless "0.9"
+import "mocat" version "0.0"
+import "igc" version "0.9"
+local import "motus" version "2.5"
 
 input = load_mocat_sample(ARGV[1])
 RESULTS = ARGV[2]
@@ -29,33 +28,14 @@ igc_mapped_post = select(igc_mapped) using |mr|:
         discard
 
 igc_counts = count(igc_mapped_post,
-                    features=['OGs'],
-                    multiple={dist1},
-                    normalization={scaled})
+                   features=['OGs'],
+                   multiple={dist1},
+                   normalization={scaled})
 write(igc_counts,
-        ofile=RESULTS </> 'eggNOG.traditional.counts.txt',
-        auto_comments=[{hash}, {script}])
+      ofile=RESULTS </> 'eggNOG.traditional.counts.txt',
+      auto_comments=[{hash}, {script}])
 
-mapped_refmg = map(non_human_reads, reference='refmg')
-mapped_refmg = select(mapped_refmg) using |mr|:
-    mr = mr.filter(min_match_size=45, min_identity_pc=97, action={drop})
-    if not mr.flag({mapped}):
-        discard
+motus_counts = motus(non_human_reads, sample=ARGV[1])
 
-write(count(mapped_refmg,
-                features=['specI_cluster']),
-    ofile=RESULTS </> 'specI.raw.counts.txt')
-
-write(count(mapped_refmg,
-                    features=['specI_cluster'],
-                    normalization={scaled}),
-    ofile=RESULTS </> 'specI.scaled.counts.txt')
-
-specI_reads = as_reads(mapped_refmg)
-
-motus_mapped = map(specI_reads, reference='motus', mode_all=True)
-motus_raw_gene_counts = count(motus_mapped, features=['gene'], multiple={dist1})
-
-write(motus(motus_raw_gene_counts),
-        ofile=RESULTS </> 'motus.counts.txt')
-
+write(motus_counts,
+      ofile=RESULTS </> 'motus_and_specI.counts.txt')
