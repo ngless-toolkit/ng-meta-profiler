@@ -82,16 +82,12 @@ format](https://ngless.embl.de/stdlib.html#mocat-module).
 
 ## RESOURCE REQUIREMENTS
 
-Profiler | Memory | Disk space
----------+--------+-----------
-Human    |  14.7G |       18G
----------+--------+-----------
-Mouse    |   5.1G |      6.3G
----------+--------+-----------
-Dog      |   4.5G |      3.5G
----------+--------+-----------
-Pig      |  10.1G |       17G
----------+--------+-----------
+| Profiler | Memory | Disk space |
+|----------|--------|------------|
+| Human    |  14.7G |       18G  |
+| Mouse    |   5.1G |      6.3G  |
+| Dog      |   4.5G |      3.5G  |
+| Pig      |  10.1G |       17G  |
 
 Note too that _the first time_ you run a particular profiler, NGLess will
 download and index the respective databases. This is likely to take several
